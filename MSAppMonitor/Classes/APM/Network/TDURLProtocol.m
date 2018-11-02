@@ -106,29 +106,6 @@ static NSString *const TDHTTP = @"GXLHTTP";
     NSUInteger bodyLengthRequest = [self.connection.currentRequest dgm_getBodyLength];
     long long totalRequest = lineLengthRequest + headerLengthRequest + bodyLengthRequest;
     [[TDNetFlowDataSource shareInstance]setNetworkTrafficData:totalRequest withDownFlow:totalRespose];
-    
-//    TDNetworkTrafficLog *model = [[TDNetworkTrafficLog alloc] init];
-//    model.path = self.request.URL.path;
-//    model.host = self.request.URL.host;
-//    model.startTime = self.startTime;
-//    model.endTime = [self getCurrntTime];
-//    model.type = TDNetworkTrafficDataTypeResponse;
-//    //respose数据/下行流量
-//    model.lineLength = [self.dm_response dm_getLineLength];
-//    model.headerLength = [self.dm_response dm_getHeadersLength];
-//    if ([self.dm_response isKindOfClass:[NSHTTPURLResponse class]]) {
-//        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)self.dm_response;
-//        NSData *data = self.dm_data;
-//        if ([[httpResponse.allHeaderFields objectForKey:@"Content-Encoding"] isEqualToString:@"gzip"]) {
-//            data = [self.dm_data gzippedData];
-//        }
-//        model.bodyLength = data.length;
-//    }
-//
-//    model.length = model.lineLength + model.headerLength + model.bodyLength;
-//    model.length = model.lineLength + model.headerLength + model.bodyLength;
-//    [model settingOccurTime];
-//    [[TDNetFlowDataSource shareInstance]addHttpModel:model];
 }
 
 #pragma mark - NSURLConnectionDelegate
@@ -148,18 +125,6 @@ static NSString *const TDHTTP = @"GXLHTTP";
         self.dm_response = response;
         [self.client URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
     }
-    
-//    TDNetworkTrafficLog *model = [[TDNetworkTrafficLog alloc] init];
-//    model.path = request.URL.path;
-//    model.host = request.URL.host;
-//    model.type = TDNetworkTrafficDataTypeRequest;
-//    model.lineLength = [connection.currentRequest dgm_getLineLength];
-//    model.headerLength = [connection.currentRequest dgm_getHeadersLengthWithCookie];
-//    model.bodyLength = [connection.currentRequest dgm_getBodyLength];
-//    NSLog(@"request-bodyLength=%ld",model.bodyLength);
-//    model.length = model.lineLength + model.headerLength + model.bodyLength;
-//    [model settingOccurTime];
-//    [[TDNetFlowDataSource shareInstance]addHttpModel:model];
     return request;
 }
 
@@ -193,14 +158,9 @@ static NSString *const TDHTTP = @"GXLHTTP";
     return _dm_data;
 }
 - (NSString *)getCurrntTime {
-//    long long curt = [self currentTime];
-//    NSString *currntTime = [NSString stringWithFormat:@"%lld",curt];
-//    return currntTime;
-    NSDateFormatter * formatter = [[NSDateFormatter alloc ] init];  
-    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss:SSS"];    
-    NSString *date =  [formatter stringFromDate:[NSDate date]];  
-    NSString *timeLocal = [[NSString alloc] initWithFormat:@"%@", date]; 
-    return timeLocal;
+    long long curt = [self currentTime];
+    NSString *currntTime = [NSString stringWithFormat:@"%lld",curt];
+    return currntTime;
 }
 //获取当前时间
 - (long long)currentTime {

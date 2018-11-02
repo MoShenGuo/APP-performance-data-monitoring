@@ -47,23 +47,14 @@
 
 - (void)clear {
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-   // [_httpModelArray removeAllObjects];
     uploadFlowTotal = 0;
     downFlowTotal = 0;
     dispatch_semaphore_signal(semaphore);
 }
 - (long long)uploadFlow {
-//    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//    long long totoal = uploadFlowTotal;
-//    uploadFlowTotal = 0;
-//    dispatch_semaphore_signal(semaphore);
     return uploadFlowTotal;
 }
 - (long long)downFlow {
-//    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//    long long totoal = downFlowTotal;
-//    downFlowTotal = 0;
-//    dispatch_semaphore_signal(semaphore);
     return downFlowTotal;
 }
 @end
