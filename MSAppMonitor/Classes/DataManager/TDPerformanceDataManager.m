@@ -752,6 +752,7 @@ static NSString * td_resource_monitorData_callback_key;
         return;
     }
     NSMutableString *attStatickList = [[NSMutableString alloc]init];
+//NSLog(@"INRCollectMainThreadStackInformation --=%@",mainThreadBacktraceList);
     @synchronized (self) {
         for (NSDictionary<NSString *,NSString *> *stackInformation in mainThreadBacktraceList) {
             NSMutableString *attStatick = [[NSMutableString alloc]initWithFormat:@"%ld^%@^INRCollectMainThreadStackInformation", (long)logNum,@"100000"];

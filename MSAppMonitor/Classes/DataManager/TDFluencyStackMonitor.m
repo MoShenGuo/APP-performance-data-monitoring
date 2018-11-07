@@ -40,6 +40,7 @@ static inline dispatch_queue_t __td_fluecy_monitor_queue() {
     });
     return instance;
 }
+//threshold以毫秒为单位
 - (void)startWithThresholdTime:(double)threshold {
     
     if (td_is_monitoring) { return; }
@@ -101,6 +102,7 @@ static inline dispatch_queue_t __td_fluecy_monitor_queue() {
             long long endTime = [self currentTime];
             NSString *string = [NSString stringWithFormat:@"endTime=%lld",endTime];
             [self stitchingCatonStackData:string withIsEmpty:YES];
+            NSLog(@"---卡死了time=%lld",(endTime - self->startTime));
         }
     }
     self ->timeOut = 0;

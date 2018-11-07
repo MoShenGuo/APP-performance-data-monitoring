@@ -3,7 +3,7 @@
 //  AFNetworking
 //
 //  Created by guoxiaoliang on 2018/8/15.
-//
+//帧率监控卡顿
 
 #import <Foundation/Foundation.h>
 
