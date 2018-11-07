@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "MSAppMonitor"
-  s.version      = "1.10.1"
+  s.version      = "1.10.2"
   s.summary      = "APP performance monitoring"
 
   # This description is used to generate tags and improve search results.
@@ -92,7 +92,7 @@ APP performance monitoring
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files = '*/Classes/**/*'
+  s.source_files = 'MSAppMonitor/Classes/**/*'
   
   # s.exclude_files = "Classes/Exclude"
 
