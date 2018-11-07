@@ -543,7 +543,7 @@ static NSString * td_resource_monitorData_callback_key;
     if (!self.isStartCasch) {
         return nil;
     }
-    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^appCollect", logNum,currntTime];
+    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^appCollect", logNum,currntTime];
     
     @synchronized (self) {
         [self logNumAddOne];
@@ -565,7 +565,7 @@ static NSString * td_resource_monitorData_callback_key;
     if (!self.isStartCasch) {
         return nil;
     }
-    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^1000^appStartupTime", logNum];
+    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^1000^appStartupTime", logNum];
     @synchronized (self) {
         [self logNumAddOne];
         NSString *startupTimeS = [NSString stringWithFormat:@"%f",appStartupTime];
@@ -579,7 +579,7 @@ static NSString * td_resource_monitorData_callback_key;
     if (!self.isStartCasch) {
         return nil;
     }
-    NSMutableString *hookSt = [[NSMutableString alloc]initWithFormat:@"%ld^%@^%@", logNum,currntTime,hookMethod];
+    NSMutableString *hookSt = [[NSMutableString alloc]initWithFormat:@"%lld^%@^%@", logNum,currntTime,hookMethod];
     @synchronized (self) {
         [self logNumAddOne];
         [hookSt appendFormat:@"^%@",className];
@@ -595,7 +595,7 @@ static NSString * td_resource_monitorData_callback_key;
 - (NSString *)getRenderWithClassName:(NSString *)className withRenderTime:(NSString *)renderTime {
     long long curt = [self currentTime];
     NSString *currntime = [NSString stringWithFormat:@"%lld",curt];
-    NSMutableString *renderStr = [[NSMutableString alloc]initWithFormat:@"%ld^%@^renderCollect", logNum,currntime];
+    NSMutableString *renderStr = [[NSMutableString alloc]initWithFormat:@"%lld^%@^renderCollect", logNum,currntime];
     @synchronized (self) {
         [self logNumAddOne];
         [renderStr appendFormat:@"^%@",className];
@@ -660,7 +660,7 @@ static NSString * td_resource_monitorData_callback_key;
     }
     long long curt = [self currentTime];
     NSString *currntTime = [NSString stringWithFormat:@"%lld",curt];
-    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^leakCollect",logNum,currntTime];
+    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^leakCollect",logNum,currntTime];
     @synchronized (self) {
         [self logNumAddOne];
         [att appendFormat:@"^%@",NSStringFromClass(object.classForCoder)];
@@ -819,7 +819,7 @@ static NSString * td_resource_monitorData_callback_key;
     [self asyncExecute:^{
         long long curt = [self currentTime];
         NSString *currntime = [NSString stringWithFormat:@"%lld",curt];
-        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^FPSCollect", logNum,currntime];
+        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^FPSCollect", logNum,currntime];
         @synchronized (self) {
             [self logNumAddOne];
             //获取时间

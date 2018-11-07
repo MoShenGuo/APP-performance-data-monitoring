@@ -40,11 +40,11 @@ public enum CrashModelType:Int {
 //--------------------------------------------------------------------------
 @objc open class CrashModel: NSObject {
     
-   @objc open var type: String!
-   @objc open var name: String!
-   @objc open var reason: String!
+    @objc open var type: String!
+    @objc open var name: String!
+    @objc open var reason: String!
     open var appinfo: String!
-   @objc open var callStack: String!
+    @objc open var callStack: String!
     
     init(type:String,
          name:String,
@@ -78,7 +78,7 @@ public class CrashEye: NSObject {
     //--------------------------------------------------------------------------
     // MARK: OPEN FUNCTION
     //--------------------------------------------------------------------------
-   @objc open class func add(delegate:CrashEyeDelegate) {
+    @objc open class func add(delegate:CrashEyeDelegate) {
         // delete null week delegate
         self.delegates = self.delegates.filter {
             return $0.delegate != nil
@@ -99,7 +99,7 @@ public class CrashEye: NSObject {
         }
     }
     
-   @objc open class func remove(delegate:CrashEyeDelegate) {
+    @objc open class func remove(delegate:CrashEyeDelegate) {
         self.delegates = self.delegates.filter {
             // filter null weak delegate
             return $0.delegate != nil
@@ -138,16 +138,16 @@ public class CrashEye: NSObject {
     
     private class func setCrashSignalHandler(){
         /*
-        异常退出 EXC_CRASH/SIGABRT,
-        内存访问不良[EXC_BAD_ACCESS // SIGSEGV // SIGBUS]
+         异常退出 EXC_CRASH/SIGABRT,
+         内存访问不良[EXC_BAD_ACCESS // SIGSEGV // SIGBUS]
          SIGBUS,
          SIGFPE,
-        非法指令 EXC_BAD_INSTRUCTION/ SIGILL,
+         非法指令 EXC_BAD_INSTRUCTION/ SIGILL,
          SIGSEGV,
-       跟踪陷阱 EXC_BREAKPOINT /SIGTRAP,
+         跟踪陷阱 EXC_BREAKPOINT /SIGTRAP,
          SIGTERM,
-        被杀 SIGKILL
-        退出 SIGQUIT
+         被杀 SIGKILL
+         退出 SIGQUIT
          */
         signal(SIGABRT, CrashEye.RecieveSignal)
         signal(SIGILL, CrashEye.RecieveSignal)
@@ -219,7 +219,7 @@ public class CrashEye: NSObject {
         let systemName = UIDevice.current.systemName
         let systemVersion = UIDevice.current.systemVersion
         //"\(displayName)#&####\(shortVersion)#&####\(version)" +
-       // "#&####\(deviceModel)" + "#&####\(systemName)#&####\(systemVersion)"
+        // "#&####\(deviceModel)" + "#&####\(systemName)#&####\(systemVersion)"
         return "App: \(displayName) \(shortVersion)(\(version))\n" +
             "Device:\(deviceModel)\n" + "OS Version:\(systemName) \(systemVersion)"
     }

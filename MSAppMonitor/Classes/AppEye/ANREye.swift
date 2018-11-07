@@ -35,7 +35,7 @@ import Foundation
     //--------------------------------------------------------------------------
     // MARK: OPEN PROPERTY
     //--------------------------------------------------------------------------
-     @objc open weak var delegate: ANREyeDelegate?
+    @objc open weak var delegate: ANREyeDelegate?
     
     open var isOpening: Bool {
         get {
@@ -49,7 +49,7 @@ import Foundation
     // MARK: OPEN FUNCTION
     //--------------------------------------------------------------------------
     
-   @objc  open func open(with threshold:Double) {
+    @objc  open func open(with threshold:Double) {
         if Thread.current.isMainThread {
             //mach_thread_self() 获得线程内核端口的发送权限
             AppBacktrace.main_thread_id = mach_thread_self()
@@ -126,21 +126,21 @@ import Foundation
         //        })
     }
     
-   @objc open func close() {
+    @objc open func close() {
         self.pingThread?.cancel()
         stopTimer()
     }
-//    //将回调卡顿数据给外界
-//    fileprivate func callbackCatonStackData(){
-//        
-//        self.stopTimer()
-//        let statickList = self.stackInformationArray
-//        self.stackInformationArray.removeAll()
-//    }
+    //    //将回调卡顿数据给外界
+    //    fileprivate func callbackCatonStackData(){
+    //        
+    //        self.stopTimer()
+    //        let statickList = self.stackInformationArray
+    //        self.stackInformationArray.removeAll()
+    //    }
     //--------------------------------------------------------------------------
     // MARK: LIFE CYCLE
     //--------------------------------------------------------------------------
- 
+    
     
     //--------------------------------------------------------------------------
     // MARK: PRIVATE PROPERTY
@@ -148,9 +148,9 @@ import Foundation
     private var pingThread: AppPingThread?
     //记录堆栈信息
     private lazy var stackInformationArray:MSSafeArray<[String:String]> = {
-//        var stackArray: [[String:String]] = [[String:String]]()
-//        return stackArray
-         var stackArray: MSSafeArray<[String:String]> = MSSafeArray<[String:String]>() 
+        //        var stackArray: [[String:String]] = [[String:String]]()
+        //        return stackArray
+        var stackArray: MSSafeArray<[String:String]> = MSSafeArray<[String:String]>() 
         return stackArray
     }()
     //定时器 定时器打印堆栈信息的
@@ -184,7 +184,7 @@ import Foundation
         stackDict["startTime"] = startTime
         stackDict["stackInformation"] = main1
         stackInformationArray.append(stackDict)
-       // print("--------1")
+        // print("--------1")
     }
     func currentTime() -> String {
         let time = NSDate().timeIntervalSince1970 * 1000
@@ -259,7 +259,7 @@ private class AppPingThread: Thread {
             Thread.sleep(forTimeInterval:self.threshold )//
             if self.isMainThreadBlock  {
                 isCaton = true
-                 //self.handler?()
+                //self.handler?()
             }
             self.isCatonhandler?(isCaton)
             //DispatchTime.distantFuture， 等待信号量 timeout可以控制可等待的最长时间，设置为.distantFuture表示永久等待
@@ -273,7 +273,7 @@ private class AppPingThread: Thread {
                     self.catonLengthhandler?(startTime,endTime)
                 }
             }
-           
+            
         }
     }
     //创建信号量 设置为0
