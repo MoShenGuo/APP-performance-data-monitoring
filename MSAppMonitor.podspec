@@ -92,7 +92,7 @@ APP performance monitoring
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files = 'MSAppMonitor/Classes/**/*'
+  s.source_files = '*/Classes/**/*'
   
   # s.exclude_files = "Classes/Exclude"
 
