@@ -1,18 +1,18 @@
+////
+////  TDPerformanceDataManager.m
+////  TuanDaiV4
+////
+////  Created by guoxiaoliang on 2018/6/28.
+////  Copyright © 2018 Dee. All rights reserved.
+////性能获取数据管理者
 //
-//  TDPerformanceDataManager.m
-//  TuanDaiV4
-//
-//  Created by guoxiaoliang on 2018/6/28.
-//  Copyright © 2018 Dee. All rights reserved.
-//性能获取数据管理者
-
 #import "TDPerformanceDataManager.h"
 #import "TDPerformanceDataModel.h"
 #import "TDGlobalTimer.h"
 #import "TDDispatchAsync.h"
 #import "TDPerformanceMonitor.h"
 #import "TDFPSMonitor.h"
-#import <HLAppMonitor/HLAppMonitor-Swift.h>
+#import "MSAppMonitor/MSAppMonitor-Swift.h"
 #import "TDFluencyStackMonitor.h"
 #import <mach/mach.h>
 #import <mach/task_info.h>
@@ -480,7 +480,7 @@ static NSString * td_resource_monitorData_callback_key;
     }
     if (isStartTime) {
         //将开始时间拼接在这里
-        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^startResourceDataTime", logNum,currntTime];
+        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^startResourceDataTime", logNum,currntTime];
         @synchronized (self) {
             [self logNumAddOne];
             [att appendFormat:@"^%@",startEndTime]; //开始时间
@@ -489,7 +489,7 @@ static NSString * td_resource_monitorData_callback_key;
          [self normalDataStrAppendwith:att];
     }else{
         //将结束时间拼接在这里
-        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^stopResourceDataTime", logNum,currntTime];
+        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^stopResourceDataTime", logNum,currntTime];
         @synchronized (self) {
             [self logNumAddOne];
             [att appendFormat:@"^%@",startEndTime]; //开始时间
@@ -516,7 +516,7 @@ static NSString * td_resource_monitorData_callback_key;
     if (!self.isStartCasch) {
         return nil;
     }
-    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^normalCollect", logNum,currntTime];
+    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^normalCollect", logNum,currntTime];
     @synchronized (self) {
         [self logNumAddOne];
         [att appendFormat:@"^%@",appCpu]; //百分比  当前使用CPU
@@ -695,7 +695,7 @@ static NSString * td_resource_monitorData_callback_key;
     NSString *callStack = [model.callStack stringByReplacingOccurrencesOfString:@"\r" withString:@"#&####"];//model.callStack;
     //  NSLog(@"type=%@--name=%@--reason=%@--appinfo=%@--callStack=%@",type,name,reason,appinfo,callStack);
     NSString *currntTime = [self getCurrntTime];
-    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^CrashCollect", logNum,currntTime];
+    NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^CrashCollect", logNum,currntTime];
     @synchronized (self) {
         [self logNumAddOne];
         [att appendFormat:@"^%@",type];
@@ -792,7 +792,7 @@ static NSString * td_resource_monitorData_callback_key;
     [self asyncExecute:^{
         long long curt = [self currentTime];
         NSString *currntime = [NSString stringWithFormat:@"%lld",curt];
-        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%ld^%@^FPSCollect", logNum,currntime];
+        NSMutableString *att = [[NSMutableString alloc]initWithFormat:@"%lld^%@^FPSCollect", logNum,currntime];
         @synchronized (self) {
             [self logNumAddOne];
             //fps频率

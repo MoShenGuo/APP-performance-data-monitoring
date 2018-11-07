@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'MSAppMonitor' do
-  pod 'MSAppMonitor', :path => '../MSAppMonitor.podspec'
+  pod 'MSAppMonitor', :path => '../../MSAppMonitor.podspec'
 
   target 'MSAppMonitorTests' do
     inherit! :search_paths
