@@ -12,7 +12,7 @@
 #import "TDDispatchAsync.h"
 #import "TDPerformanceMonitor.h"
 #import "TDFPSMonitor.h"
-#import <HLAppMonitor/HLAppMonitor-Swift.h>
+#import <MSAppMonitor/MSAppMonitor-Swift.h>
 #import <mach/mach.h>
 #import <mach/task_info.h>
 #import "TDNetworkTrafficManager.h"

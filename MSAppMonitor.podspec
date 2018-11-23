@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "MSAppMonitor"
-  s.version      = "1.10.3"
+  s.version      = "1.10.5"
   s.summary      = "APP performance monitoring"
 
   # This description is used to generate tags and improve search results.
